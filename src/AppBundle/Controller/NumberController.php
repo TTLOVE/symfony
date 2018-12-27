@@ -1,20 +1,15 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace App\AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 
-class LuckyController
+class NumberController
 {
-    /**
-     * @Route("/number")
-     */
     public function numberAction()
     {
-        echo "aa";
-        exit();
-        $number = rand(0, 100);
+        $number = rand(100, 1000);
 
         return new Response(
             '<html><body>Lucky number: ' . $number . '</body></html>'
