@@ -10,49 +10,22 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class LuckyController extends Controller
 {
     /**
-     * @Route("/rand")
+     * @Route("/search/{id}")
      */
-    public function numberAction()
+    public function numberAction($id)
     {
-        $number = rand(0, 100);
 
-        return new Response(
-            '<html><body>Lucky number: ' . $number . '</body></html>'
-        );
-    }
-
-    /**
-     * @Route("/api/lucky/number")
-     */
-    public function apiNumberAction()
-    {
-        $data = array(
-            'lucky_number' => rand(0, 100),
-        );
- 
-        return new JsonResponse($data);
-    }
-
-    /**
-     * @Route("/lucky/number/{count}")
-     */
-    public function lucky($count)
-    {
-        $numbers = [];
-
-        for ($i=0; $i < $count; $i++) { 
-            $numbers[] = rand(0, 10);
+        if ($id !== 'asdasd') {
+            $html = $this->renderView(
+                'error.html.twig'
+            );
+        } else {
+            $html = $this->renderView(
+                'search.html.twig'
+            );
         }
+        
 
-        $data = array(
-            'lucky_number' => implode(',', $numbers),
-        );
-
-        $html = $this->render(
-            'lucky/number.html.twig',
-            $data
-        );
- 
-        return new JsonResponse($data);
+        return new Response($html);
     }
 }
